@@ -1,0 +1,29 @@
+func square(externalName internalName: type) -> return type {
+	return internalName * internalName
+}
+
+square(externalName: 5)
+
+-------
+
+struct (Value type):
+* Copied when passed or assigned
+* Copied on write
+* Functional programming
+* No inheritance
+* init initializes all vars
+* Mutability is explicit (var vs let)
+* The "go-to" data structure
+
+class (Reference type):
+* Passed via pointers
+* Automatically reference counted
+* Object-oriented programming
+* Inheritance
+* init initializes no vars
+* Always mutable
+* Used in specific scenarios
+
+-------
+
+Nested struct good for namespacing (e.g. MemoryGame.Card)
