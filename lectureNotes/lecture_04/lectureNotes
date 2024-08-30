@@ -1,0 +1,18 @@
+Model:
+* Independent of UI
+* Data + logic
+* The truth
+
+ViewModel:
+* Binds view to model
+* Interpreter / gatekeeper
+
+View:
+* Reflects the model
+* Stateless, declared, reactive
+
+Option+click on something to read the docs for it (useful for jumping into color, font, etc)
+
+command+option+enter to launch preview window
+
+Anything that modifies self must label with `mutating`
