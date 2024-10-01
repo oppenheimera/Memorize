@@ -8,7 +8,16 @@
 import SwiftUI
 
 class EmojiMemoryGame: ObservableObject {
-  private static let emojis = ["🌮", "🌯", "🌭", "🥗", "🍕", "🧁", "🍦", "🥑", "🥐", "🌶️"]
+  public static let emojis = ["🌮", "🌯", "🌭", "🥗", "🍕", "🧁", "🍦", "🥑", "🥐", "🌶️"]
+  public static let halloween = ["👻", "🎃", "🧙", "🏚️", "😈", "🕷️", "💀", "🥧", "🕸️"]
+  public static let beach = ["🌊","👙", "🏖️", "☀️", "🐚", "⛱️", "🏝️", "🩱", "🩳"]
+  public static let vehicles = ["🚗", "🚙", "🏎️", "🚃", "🚖", "🚔", "🚢", "🚎", "🚍"]
+  public static let food = ["🌮", "🌯", "🌭", "🥗", "🍕", "🧁", "🍦", "🥑", "🥐", "🌶️"]
+  
+  public init(model: MemoryGame<String> = createMemoryGame(), selectedTheme: Theme? = EmojiMemoryGame.Theme.beach) {
+    self.model = model
+    self.selectedTheme = selectedTheme ?? EmojiMemoryGame.Theme.food
+  }
   
   private static func createMemoryGame() -> MemoryGame<String> {
     return MemoryGame(numberOfPairsOfCards: 10) { pairIndex in
@@ -22,6 +31,16 @@ class EmojiMemoryGame: ObservableObject {
   
   @Published private var model = createMemoryGame()
   
+  enum Theme: String, CaseIterable, Identifiable {
+    case halloween, beach, vehicles, food
+    var id: Self { self }
+  }
+  @State var selectedTheme: Theme
+  
+  var color: Color {
+    .orange
+  }
+  
   var cards: Array<MemoryGame<String>.Card> {
     return model.cards
   }
@@ -30,6 +49,10 @@ class EmojiMemoryGame: ObservableObject {
   
   func shuffle() {
     model.shuffle()
+  }
+  
+  func newGame(){
+    model = EmojiMemoryGame.createMemoryGame()
   }
   
   func choose(_ card: MemoryGame<String>.Card) {
